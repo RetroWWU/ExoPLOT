@@ -118,29 +118,7 @@ cpmPlot <- function(f_ct, f_lib, f_edgeR, f_gene, query) {
     df.plot <- rbind(df.plot, tmp)
   }
   df.plot[is.na(df.plot)] <- 0
-  
-  # table for 3D plot
-#  df.3dplot = melt(as(df, "data.table"), 
-#                   id.vars = c("order", "class", "tissue"), 
-#                   measure.vars = c("cpm_hit", "cpm_nonhit"), 
-#                   variable.name = "reads",
-#                   value.name = "cpm")
-#  df.3dplot$cpm = log2(df.3dplot$cpm + 1)
-#  colnames(df.3dplot)[5] = "log2pCPM"
-#  df.3dplot$class = factor(df.3dplot$class, levels = c("BeforeBirth", "Infant", 
-#                                                       "Child", "Adolescence", 
-#                                                       "Adult", "MiddleAged", "Senior"))
-#  tmp = ifelse(df.3dplot$reads=="cpm_hit", "withTE", "withoutTE")
-#  df.3dplot$reads = tmp
-#  rm(tmp)
-#  df.3dplot$TE = paste(df.3dplot$tissue, df.3dplot$reads)
-#  ax <- list(categoryorder = "array",
-#             categoryarray = c("BeforeBirth", "Infant", 
-#                               "Child", "Adolescence", 
-#                               "Adult", "MiddleAged", "Senior"))
-#  p.3d = plot_ly(df.3dplot, x = ~class, y = ~tissue, z = ~log2pCPM, size = I(300), alpha = 0.8, color = ~TE, colors = color.list[c(matrix(1:14, nrow = 2)[2:1,])]) 
-#  p.3d = p.3d %>% layout(xaxis = ax)
-  
+    
   ## count table for download
   df.dl = df.plot[,c("stage","tissue", "cpm.mean.hit","cpm.mean.nonhit")]
   colnames(df.dl) <- c("stage","tissue", "cpm.withTE","cpm.withoutTE")
